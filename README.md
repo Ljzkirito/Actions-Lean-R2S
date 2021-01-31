@@ -1,4 +1,4 @@
-# Github Actions Lean & Lienol's Openwrt XY-C5
+# Github Actions Lean Openwrt XY-C5
 
 - Openwrt源码是[coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)。
 - Github Actions来自于[P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)，[中文教程](https://p3terx.com/archives/build-openwrt-with-github-actions.html)。
