@@ -35,7 +35,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Checkout
@@ -47,7 +47,7 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
-        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-1804)
+        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004)
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
@@ -103,7 +103,7 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        make -j$(nproc) || make -j1 || make -j1 V=s
+        make -j$(nproc) || make -j1 V=s
         echo "::set-output name=status::success"
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
@@ -119,6 +119,14 @@ jobs:
       with:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
+
+    - name: Upload some ipk
+      id: ipk
+      if: (!cancelled())
+      run: |
+        cp openwrt/bin/packages/*/*/*ssr-plus*.ipk openwrt/bin/targets/*/*/ || true
+        cp openwrt/bin/packages/*/*/*passwall*.ipk openwrt/bin/targets/*/*/ || true
+        cp openwrt/bin/packages/*/*/xray*.ipk openwrt/bin/targets/*/*/ || true
 
     - name: Organize files
       id: organize
@@ -160,6 +168,11 @@ jobs:
       run: |
         echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
+        echo "## Lean's Openwrt Release $(date +"%Y.%m.%d-%H:%M")" >> release.txt
+        echo "- squashfs-sysupgrade.bin" >> release.txt
+        echo "  sha256: $(cat ${{ env.FIRMWARE }}/sha256sums | grep -oE ".*squashfs-sysupgrade.img.gz" | grep -oE "\w{64}")" >> release.txt
+        echo "- ext4-sysupgrade.bin" >> release.txt
+        echo "  sha256: $(cat ${{ env.FIRMWARE }}/sha256sums | grep -oE ".*ext4-sysupgrade.img.gz" | grep -oE "\w{64}")" >> release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"
@@ -172,11 +185,17 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
+        files: |
+          ${{ env.FIRMWARE }}/*sysupgrade.img.gz
+          ${{ env.FIRMWARE }}/*ssr-plus*.ipk
+          ${{ env.FIRMWARE }}/*passwall*.ipk
+          ${{ env.FIRMWARE }}/xray*.ipk
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
+        token: ${{ secrets.ACTIONS_TRIGGER_PAT }}
+        repository: ${{ github.repository }}
         retain_days: 1
         keep_minimum_runs: 3
 
@@ -187,4 +206,4 @@ jobs:
         keep_latest: 3
         delete_tags: true
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_TRIGGER_PAT }}
