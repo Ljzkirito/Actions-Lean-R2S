@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt
+name: Build Lean OpenWrt
 
 on:
   repository_dispatch:
@@ -169,9 +169,7 @@ jobs:
         echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
         echo "## Lean's Openwrt Release $(date +"%Y.%m.%d-%H:%M")" >> release.txt
-        echo "- squashfs-sysupgrade.bin" >> release.txt
-        echo "  sha256: $(cat ${{ env.FIRMWARE }}/sha256sums | grep -oE ".*squashfs-sysupgrade.img.gz" | grep -oE "\w{64}")" >> release.txt
-        echo "- ext4-sysupgrade.bin" >> release.txt
+        echo "- ext4-sysupgrade.img.gz" >> release.txt
         echo "  sha256: $(cat ${{ env.FIRMWARE }}/sha256sums | grep -oE ".*ext4-sysupgrade.img.gz" | grep -oE "\w{64}")" >> release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
