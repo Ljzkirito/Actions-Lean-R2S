@@ -22,6 +22,7 @@ git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/lea
 # Add luci-app-adguardhome
 svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome package/lean/luci-app-adguardhome
 svn co https://github.com/Lienol/openwrt-packages/trunk/net/adguardhome package/lean/adguardhome
+svn co https://github.com/Lienol/openwrt-packages/trunk/devel/packr package/lean/packr
 # Add luci-app-diskman
 git clone --depth=1 https://github.com/SuLingGG/luci-app-diskman package/lean/luci-app-diskman
 mkdir package/lean/parted
