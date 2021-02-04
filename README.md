@@ -14,8 +14,7 @@
 - 动态 DNS
 - 网络唤醒
 - Argon 主题
-- Docker CE
-- pdnsd-patch:pdnsd 过滤IPv6(AAAA) DNS
+- AdGuardHome
 
 ## Config文件生成参考
 
