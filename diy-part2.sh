@@ -22,9 +22,6 @@ pushd feeds/packages/lang
 rm -fr golang && svn co https://github.com/openwrt/packages/trunk/lang/golang
 popd
 
-# let pdnsd filter aaaa
-mv $GITHUB_WORKSPACE/pdnsd-patch/* $GITHUB_WORKSPACE/openwrt/package/lean/pdnsd-alt/patches
-
 # 修改 argon 为默认主题,不再集成luci-theme-bootstrap主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
