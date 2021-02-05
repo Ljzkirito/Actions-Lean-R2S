@@ -25,11 +25,11 @@ svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome 
 #svn co https://github.com/Lienol/openwrt-packages/trunk/devel/packr package/lean/packr
 mv $GITHUB_WORKSPACE/adguardhome $GITHUB_WORKSPACE/openwrt/package/lean
 # Add luci-app-diskman
-git clone --depth=1 https://github.com/SuLingGG/luci-app-diskman package/lean/luci-app-diskman
-mkdir package/lean/parted
-cp package/lean/luci-app-diskman/Parted.Makefile package/lean/parted/Makefile
+#git clone --depth=1 https://github.com/SuLingGG/luci-app-diskman package/lean/luci-app-diskman
+#mkdir package/lean/parted
+#cp package/lean/luci-app-diskman/Parted.Makefile package/lean/parted/Makefile
 # Add luci-app-dockerman
-rm -rf package/lean/luci-app-docker
+rm -rf package/lean/luci-app-docker package/lean/luci-lib-docker
 git clone --depth=1 https://github.com/KFERMercer/luci-app-dockerman  package/lean/luci-app-dockerman
 git clone --depth=1 https://github.com/lisaac/luci-lib-docker package/lean/luci-lib-docker
 # Add luci-theme-argon
