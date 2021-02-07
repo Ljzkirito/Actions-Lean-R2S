@@ -36,3 +36,11 @@ git clone --depth=1 https://github.com/lisaac/luci-lib-docker package/lean/luci-
 rm -rf package/lean/luci-theme-argon
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/lean/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/lean/luci-app-argon-config
+#Remove default apps
+sed -i 's/luci-app-zerotier//g' target/linux/rockchip/Makefile
+sed -i 's/luci-app-vsftpd //g' include/target.mk
+sed -i 's/luci-app-unblockmusic //g' include/target.mk
+sed -i 's/luci-app-vlmcsd //g' include/target.mk
+sed -i 's/luci-app-sfe //g' include/target.mk
+sed -i 's/luci-app-nlbwmon //g' include/target.mk
+sed -i 's/luci-app-accesscontrol //g' include/target.mk
