@@ -44,7 +44,7 @@ jobs:
         path: .commitHash
         key: HEAD-${{ steps.getHash.outputs.commitHash }}
 
-    - name: Compare Commit Hash
+    - name: Compare Feed Commit Hash
       id: feedcacheHash
       uses: actions/cache@v2
       with:
