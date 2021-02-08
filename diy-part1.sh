@@ -13,8 +13,20 @@
 # Uncomment a feed source
 sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 # Add a feed source
-sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
+#sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
 
+# 获取luci-app-passwall以及缺失的依赖
+pushd package/lean
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/brook
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng
+popd
+# 使用官方ppp
+rm -rf package/network/services/ppp
+svn co https://github.com/openwrt/openwrt/trunk/package/network/services/ppp package/network/services/ppp
 # Remove UnblockNeteaseMusicGo upx commands
 sed -i "/upx/d" package/lean/UnblockNeteaseMusicGo/Makefile || true
 # Add OpenClash
