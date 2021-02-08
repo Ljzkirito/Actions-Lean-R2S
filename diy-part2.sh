@@ -31,6 +31,10 @@ rm -rf https-dns-proxy
 svn co https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy
 popd
 
+# 更新miniupnp版本
+rm -fr feeds/packages/net/miniupnpd
+mv $GITHUB_WORKSPACE/miniupnpd $GITHUB_WORKSPACE/openwrt/feeds/packages/net
+
 # Add po2lmo
 git clone https://github.com/openwrt-dev/po2lmo.git
 pushd po2lmo
