@@ -29,8 +29,11 @@ popd
 # 使用官方ppp
 rm -rf package/network/services/ppp
 svn co https://github.com/openwrt/openwrt/trunk/package/network/services/ppp package/network/services/ppp
-# Remove UnblockNeteaseMusicGo upx commands
+# Remove upx commands
 sed -i "/upx/d" package/lean/UnblockNeteaseMusicGo/Makefile || true
+sed -i "/upx/d" package/lean/frp/Makefile || true
+sed -i "/upx/d" package/lean/trojan-go/Makefile || true
+sed -i "/upx/d" package/lean/v2ray-plugin/Makefile || true
 # Add OpenClash
 git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/lean/OpenClash
 # Add luci-app-adguardhome
