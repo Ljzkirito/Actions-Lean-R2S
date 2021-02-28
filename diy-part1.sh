@@ -65,3 +65,10 @@ sed -i 's/luci-app-accesscontrol //g' include/target.mk
 sed -i 's/wan\" \"eth0/wan\" \"eth1/g' target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
 sed -i 's/lan\" \"eth1/lan\" \"eth0/g' target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
 sed -i "s/eth1' 'eth0/eth0' 'eth1/g" target/linux/rockchip/armv8/base-files/etc/board.d/02_network
+
+# Auto Update Adguardhome
+mv $GITHUB_WORKSPACE/adguardhome $GITHUB_WORKSPACE/openwrt/package/lean
+now_ver=$(cat package/lean/adguardhome/Makefile | grep "PKG_VERSION:" | grep -oE "v[0-9.]+")
+latest_ver="$(curl -L -k --retry 2 --connect-timeout 20 -o - https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest 2>/dev/null|grep -E 'tag_name' |grep -E 'v[0-9.]+' -o 2>/dev/null)"
+echo -e "Local version: ${now_ver}., cloud version: ${latest_ver}." 
+sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=${latest_ver}/g" package/lean/adguardhome/Makefile
