@@ -161,7 +161,6 @@ jobs:
         echo "## Lean's Openwrt Release $(date +"%Y.%m.%d-%H:%M")" >> release.txt
         echo "- ext4-sysupgrade.img.gz" >> release.txt
         echo "  md5sum: $(md5sum ${{ env.FIRMWARE }}/*sysupgrade.img.gz | cut -d" " -f1)" >> release.txt
-        echo "  sha256: $(sha256sum ${{ env.FIRMWARE }}/*sysupgrade.img.gz | cut -d" " -f1)" >> release.txt
         echo "  sha256: $(cat ${{ env.FIRMWARE }}/sha256sums | grep -oE ".*ext4-sysupgrade.img.gz" | grep -oE "\w{64}")" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"
@@ -170,7 +169,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-        GITHUB_TOKEN: ${{ secrets.ACTIONS_TRIGGER_PAT }}
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_REPO_PAT }}
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
@@ -183,7 +182,7 @@ jobs:
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
-        token: ${{ secrets.ACTIONS_TRIGGER_PAT }}
+        token: ${{ secrets.ACTIONS_REPO_PAT }}
         repository: ${{ github.repository }}
         retain_days: 1
         keep_minimum_runs: 3
@@ -195,4 +194,4 @@ jobs:
         keep_latest: 3
         delete_tags: true
       env:
-        GITHUB_TOKEN: ${{ secrets.ACTIONS_TRIGGER_PAT }}
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_REPO_PAT }}
