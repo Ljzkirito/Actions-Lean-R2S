@@ -30,9 +30,9 @@ Signed-off-by: Jo-Philipp Wich <jo@mein.io>
 @@ -38,7 +38,7 @@ debug.o: debug.c
  	$(CC) $(CFLAGS) -I../../.. -c -o debug.o debug.c
  
- rp-pppoe.so: plugin.o discovery.o if.o common.o
--	$(CC) $(LDFLAGS) -o rp-pppoe.so -shared plugin.o discovery.o if.o common.o
-+	$(CC) $(LDFLAGS) -fPIC -o rp-pppoe.so -shared plugin.o discovery.o if.o common.o
+ pppoe.so: plugin.o discovery.o if.o common.o
+-	$(CC) $(LDFLAGS) -o pppoe.so -shared plugin.o discovery.o if.o common.o
++	$(CC) $(LDFLAGS) -fPIC -o pppoe.so -shared plugin.o discovery.o if.o common.o
  
  install: all
  	$(INSTALL) -d -m 755 $(LIBDIR)
