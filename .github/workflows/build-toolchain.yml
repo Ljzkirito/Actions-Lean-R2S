@@ -63,20 +63,6 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-    - name: Compile the toolchain
-      id: toolchain
-      run: |
-        cd openwrt
-        echo -e "$(nproc) thread compile"
-        make toolchain/compile -j$(nproc) || make toolchain/compile -j1 V=s
-        echo "::set-output name=status::success"
-        
-    - name: Upload openwrt directory
-      uses: actions/upload-artifact@main
-      if: steps.toolchain.outputs.status == 'success' && !cancelled()
-      with:
-        name: OpenWrt_directory
-        path: openwrt
         
     - name: Compile the firmware
       id: compile
