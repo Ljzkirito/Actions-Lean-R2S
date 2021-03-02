@@ -90,7 +90,7 @@ jobs:
         echo "TOOLCHAIN_ROOT=$PWD" >> $GITHUB_ENV
         cd $GITHUB_WORKSPACE/openwrt
         echo "CONFIG_EXTERNAL_TOOLCHAIN=y" >> .config
-        echo "CONFIG_TOOLCHAIN_ROOT=\"${{ env.TOOLCHAIN_ROOT }}\"" >> .config
+        echo "CONFIG_TOOLCHAIN_ROOT=\"/opt/openwrt-toolchain-rockchip-armv8_gcc-8.4.0_musl.Linux-x86_64/toolchain-aarch64_generic_gcc-8.4.0_musl/\"" >> .config
         cat .config
 
     - name: SSH connection to Actions
