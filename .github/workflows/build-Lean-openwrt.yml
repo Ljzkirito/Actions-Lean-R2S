@@ -86,7 +86,7 @@ jobs:
       if: env.Use_external_toolchain == 'true' && !cancelled()
       run: |
         tar -xjvf toolchain/*.tar.bz2 -C /opt
-        cd /opt/*/toolchain* && echo "TOOLCHAIN_ROOT=$PWD" >> $GITHUB_ENV
+        cd /opt/* && echo "TOOLCHAIN_ROOT=$PWD" >> $GITHUB_ENV
         cd $GITHUB_WORKSPACE/openwrt
         echo "CONFIG_EXTERNAL_TOOLCHAIN=y" >> .config
         echo "CONFIG_TOOLCHAIN_ROOT=\"${{ env.TOOLCHAIN_ROOT }}"" >> .config
