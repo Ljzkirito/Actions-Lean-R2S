@@ -83,7 +83,7 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: Use_external_toolchain
-      if: env.Use_external_toolchain == 'true' && [ -e toolchain ] && !cancelled()
+      if: env.Use_external_toolchain == 'true' && -e toolchain && !cancelled()
       run: |
         tar -xjvf toolchain/*.tar.bz2 -C /opt
         cd /opt/*/*
