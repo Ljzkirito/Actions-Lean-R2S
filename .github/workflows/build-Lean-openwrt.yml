@@ -30,7 +30,6 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
-  Use_external_toolchain: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -81,17 +80,6 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-
-    - name: Use_external_toolchain
-      if: env.Use_external_toolchain == 'true' && !cancelled()
-      run: |
-        tar -xjvf toolchain/*.tar.bz2 -C /opt
-        cd /opt/*/t*
-        echo "TOOLCHAIN_ROOT=$PWD" >> $GITHUB_ENV
-        cd $GITHUB_WORKSPACE/openwrt
-        echo "CONFIG_EXTERNAL_TOOLCHAIN=y" >> .config
-        echo "CONFIG_TOOLCHAIN_ROOT=\"/opt/openwrt-toolchain-rockchip-armv8_gcc-8.4.0_musl.Linux-x86_64/toolchain-aarch64_generic_gcc-8.4.0_musl/\"" >> .config
-        cat .config
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
