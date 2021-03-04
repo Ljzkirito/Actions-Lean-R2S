@@ -160,7 +160,7 @@ jobs:
         touch release.txt
         echo "## Lean's Openwrt Release $(date +"%Y.%m.%d-%H:%M")" >> release.txt
         echo "- ext4-sysupgrade.img.gz" >> release.txt
-        echo "  md5sum: $(md5sum ${{ env.FIRMWARE }}/*sysupgrade.img.gz | cut -d" " -f1)" >> release.txt
+        echo "  md5: $(md5sum ${{ env.FIRMWARE }}/*sysupgrade.img.gz | cut -d" " -f1)" >> release.txt
         echo "  sha256: $(cat ${{ env.FIRMWARE }}/sha256sums | grep -oE ".*ext4-sysupgrade.img.gz" | grep -oE "\w{64}")" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"
