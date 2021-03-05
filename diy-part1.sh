@@ -66,8 +66,10 @@ sed -i 's/luci-app-accesscontrol //g' include/target.mk
 sed -i 's/wan\" \"eth0/wan\" \"eth1/g' target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
 sed -i 's/lan\" \"eth1/lan\" \"eth0/g' target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
 sed -i "s/eth1' 'eth0/eth0' 'eth1/g" target/linux/rockchip/armv8/base-files/etc/board.d/02_network
-#关闭禁止解析 IPv6 DNS 记录
+#关闭 禁止解析 IPv6 DNS 记录
 sed -i 's/option filter_aaaa\t1/option filter_aaaa\t0/g' package/network/services/dnsmasq/files/dhcp.conf
+#Remove firewall zone wan6
+sed -i "/wan6/d" package/network/config/firewall/files/firewall.config
 
 # Auto Update Adguardhome
 now_ver="$(cat package/lean/adguardhome/Makefile | grep "PKG_VERSION:=" | grep -oE "[0-9.]+")"
