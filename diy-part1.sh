@@ -26,7 +26,7 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/brook
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng
 popd
-# 使用官方ppp 2.4.9
+# 使用官方ppp 2.4.8
 rm -rf package/network/services/ppp
 mv $GITHUB_WORKSPACE/ppp $GITHUB_WORKSPACE/openwrt/package/network/services
 #svn co https://github.com/openwrt/openwrt/trunk/package/network/services/ppp package/network/services/ppp
