@@ -70,6 +70,8 @@ sed -i "s/eth1' 'eth0/eth0' 'eth1/g" target/linux/rockchip/armv8/base-files/etc/
 sed -i 's/option filter_aaaa\t1/option filter_aaaa\t0/g' package/network/services/dnsmasq/files/dhcp.conf
 #Remove firewall zone wan6
 sed -i "/wan6/d" package/network/config/firewall/files/firewall.config
+#use vendor driver
+sed -i 's/kmod-usb-net-rtl8152/usb-net-rtl8152-vendor/g' target/linux/rockchip/image/armv8.mk
 
 # Auto Update Adguardhome
 now_ver="$(cat package/lean/adguardhome/Makefile | grep "PKG_VERSION:=" | grep -oE "[0-9.]+")"
