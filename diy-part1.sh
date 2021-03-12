@@ -71,7 +71,7 @@ sed -i 's/option filter_aaaa\t1/option filter_aaaa\t0/g' package/network/service
 #Remove firewall zone wan6
 sed -i "/wan6/d" package/network/config/firewall/files/firewall.config
 #use vendor driver
-sed -i 's/kmod-usb-net-rtl8152/usb-net-rtl8152-vendor/g' target/linux/rockchip/image/armv8.mk
+sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/g' target/linux/rockchip/image/armv8.mk
 
 # Auto Update Adguardhome
 now_ver="$(cat package/lean/adguardhome/Makefile | grep "PKG_VERSION:=" | grep -oE "[0-9.]+")"
