@@ -33,7 +33,6 @@ svn co https://github.com/Ljzkirito/openwrt-packages/trunk/ppp package/network/s
 # Remove upx commands
 sed -i "/upx/d" package/lean/UnblockNeteaseMusicGo/Makefile || true
 sed -i "/upx/d" package/lean/frp/Makefile || true
-sed -i "/upx/d" package/lean/trojan-go/Makefile || true
 sed -i "/upx/d" package/lean/v2ray-plugin/Makefile || true
 # Add OpenClash
 git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/lean/OpenClash
