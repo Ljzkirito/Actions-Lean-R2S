@@ -70,9 +70,3 @@ sed -i 's/option filter_aaaa\t1/option filter_aaaa\t0/g' package/network/service
 sed -i "/wan6/d" package/network/config/firewall/files/firewall.config
 #use vendor driver
 sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/g' target/linux/rockchip/image/armv8.mk
-
-# Auto Update Adguardhome
-now_ver="$(cat package/lean/adguardhome/Makefile | grep "PKG_VERSION:=" | grep -oE "[0-9.]+")"
-latest_ver="$(curl -L -k --retry 2 --connect-timeout 20 -o - https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest 2>/dev/null|grep -E 'tag_name' |grep -E '[0-9.]+' -o 2>/dev/null)"
-echo -e "Adguardhome Local version: ${now_ver}., cloud version: ${latest_ver}." 
-sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=${latest_ver}/g" package/lean/adguardhome/Makefile
