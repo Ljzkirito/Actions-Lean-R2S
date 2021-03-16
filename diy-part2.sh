@@ -25,15 +25,9 @@ popd
 # 修改 argon 为默认主题,不再集成luci-theme-bootstrap主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
-# Use Lienol's https-dns-proxy package
-pushd feeds/packages/net
-rm -rf https-dns-proxy
-svn co https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy
-popd
-
 # 更新miniupnp版本
 rm -fr feeds/packages/net/miniupnpd
-mv $GITHUB_WORKSPACE/miniupnpd $GITHUB_WORKSPACE/openwrt/feeds/packages/net
+svn co https://github.com/Ljzkirito/openwrt-packages/trunk/miniupnpd feeds/packages/net/miniupnpd
 
 # Add po2lmo
 git clone https://github.com/openwrt-dev/po2lmo.git

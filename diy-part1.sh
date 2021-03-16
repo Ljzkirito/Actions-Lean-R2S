@@ -26,9 +26,9 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/brook
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng
 popd
-# 使用官方ppp 2.4.8
+# 使用官方ppp 2.4.9
 rm -rf package/network/services/ppp
-mv $GITHUB_WORKSPACE/ppp $GITHUB_WORKSPACE/openwrt/package/network/services
+svn co https://github.com/Ljzkirito/openwrt-packages/trunk/ppp package/network/services/ppp
 #svn co https://github.com/openwrt/openwrt/trunk/package/network/services/ppp package/network/services/ppp
 # Remove upx commands
 sed -i "/upx/d" package/lean/UnblockNeteaseMusicGo/Makefile || true
@@ -41,7 +41,7 @@ git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/lea
 svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome package/lean/luci-app-adguardhome
 #svn co https://github.com/Lienol/openwrt-packages/trunk/net/adguardhome package/lean/adguardhome
 #svn co https://github.com/Lienol/openwrt-packages/trunk/devel/packr package/lean/packr
-mv $GITHUB_WORKSPACE/adguardhome $GITHUB_WORKSPACE/openwrt/package/lean
+svn co https://github.com/Ljzkirito/openwrt-packages/trunk/adguardhome package/lean/adguardhome
 # Add luci-app-diskman
 #git clone --depth=1 https://github.com/SuLingGG/luci-app-diskman package/lean/luci-app-diskman
 #mkdir package/lean/parted
