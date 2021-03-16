@@ -28,6 +28,8 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/M
 # 更新miniupnp版本
 rm -fr feeds/packages/net/miniupnpd
 svn co https://github.com/Ljzkirito/openwrt-packages/trunk/miniupnpd feeds/packages/net/miniupnpd
+rm -fr feeds/luci/applications/luci-app-upnp
+svn co https://github.com/Ljzkirito/openwrt-packages/trunk/luci-app-upnp feeds/luci/applications/luci-app-upnp
 
 # Add po2lmo
 git clone https://github.com/openwrt-dev/po2lmo.git
