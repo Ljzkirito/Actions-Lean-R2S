@@ -20,7 +20,6 @@ git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/
 # 获取luci-app-passwall以及缺失的依赖
 pushd package/lean
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/brook
