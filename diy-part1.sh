@@ -70,5 +70,3 @@ sed -i 's/option filter_aaaa\t1/option filter_aaaa\t0/g' package/network/service
 sed -i "/wan6/d" package/network/config/firewall/files/firewall.config
 #use vendor driver
 sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/g' target/linux/rockchip/image/armv8.mk
-# 保留概览的网口信息
-sed -i "/mwan/d" package/lean/default-settings/files/zzz-default-settings
