@@ -57,7 +57,6 @@ sed -i 's/luci-app-zerotier//g' target/linux/rockchip/Makefile
 sed -i 's/luci-app-vsftpd //g' include/target.mk
 sed -i 's/luci-app-unblockmusic //g' include/target.mk
 sed -i 's/luci-app-vlmcsd //g' include/target.mk
-sed -i 's/luci-app-sfe //g' include/target.mk
 sed -i 's/luci-app-nlbwmon //g' include/target.mk
 sed -i 's/luci-app-accesscontrol //g' include/target.mk
 #交换Lan Wan 接口
