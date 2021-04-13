@@ -10,10 +10,10 @@
 - IPv6支持
 - [SSR(Helloworld)](https://github.com/fw876/helloworld)
 - [Passwall](https://github.com/xiaorouji/openwrt-passwall/tree/main/luci-app-passwall)
-- UPnP
+- [UPnP 2.2.1-2](https://github.com/Ljzkirito/openwrt-packages/tree/main/miniupnpd)
 - 动态 DNS
 - 网络唤醒
-- Argon 主题
+- [Argon 主题](https://github.com/jerrykuku/luci-theme-argon/tree/18.06)
 - AdGuardHome
 
 ## Config文件生成参考
