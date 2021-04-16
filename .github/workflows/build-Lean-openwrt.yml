@@ -175,9 +175,7 @@ jobs:
         body_path: release.txt
         files: |
           ${{ env.FIRMWARE }}/*sysupgrade.img.gz
-          ${{ env.FIRMWARE }}/*ssr-plus*.ipk
-          ${{ env.FIRMWARE }}/*passwall*.ipk
-          ${{ env.FIRMWARE }}/xray*.ipk
+          ${{ env.FIRMWARE }}/*.ipk
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
