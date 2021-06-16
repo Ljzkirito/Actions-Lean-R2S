@@ -32,7 +32,6 @@ svn co https://github.com/Ljzkirito/openwrt-packages/trunk/ppp package/network/s
 # Remove upx commands
 sed -i "/upx/d" package/lean/UnblockNeteaseMusicGo/Makefile || true
 sed -i "/upx/d" package/lean/frp/Makefile || true
-sed -i "/upx/d" package/lean/v2ray-plugin/Makefile || true
 # Add OpenClash
 git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/lean/OpenClash
 # Add luci-app-adguardhome
@@ -45,9 +44,9 @@ svn co https://github.com/Ljzkirito/openwrt-packages/trunk/adguardhome package/l
 #mkdir package/lean/parted
 #cp package/lean/luci-app-diskman/Parted.Makefile package/lean/parted/Makefile
 # Add luci-app-dockerman
-rm -rf package/lean/luci-app-docker package/lean/luci-lib-docker
-git clone --depth=1 https://github.com/KFERMercer/luci-app-dockerman  package/lean/luci-app-dockerman
-git clone --depth=1 https://github.com/lisaac/luci-lib-docker package/lean/luci-lib-docker
+#rm -rf package/lean/luci-app-docker package/lean/luci-lib-docker
+#git clone --depth=1 https://github.com/KFERMercer/luci-app-dockerman  package/lean/luci-app-dockerman
+#git clone --depth=1 https://github.com/lisaac/luci-lib-docker package/lean/luci-lib-docker
 # Add luci-theme-argon
 rm -rf package/lean/luci-theme-argon
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/lean/luci-theme-argon
