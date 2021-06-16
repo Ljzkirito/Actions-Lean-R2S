@@ -11,9 +11,9 @@
 #
 
 # Uncomment a feed source
-sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+#sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 # Add a feed source
-#sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
+sed -i '$a src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
 
 #关机（增加关机功能）
 svn co https://github.com/Ljzkirito/openwrt-packages/trunk/luci-app-poweroff package/lean/luci-app-poweroff
